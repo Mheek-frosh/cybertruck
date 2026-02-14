@@ -36,37 +36,8 @@ const Hero = () => {
     const currentSlide = CAR_SLIDES[activeIndex];
 
     return (
-        <section className="relative min-h-screen w-full bg-[#E0E2E5] text-[#111827] overflow-hidden flex flex-col p-6 font-sans">
-            {/* Header */}
-            <header className="flex items-center justify-between w-full max-w-[1440px] mx-auto z-50 mb-8">
-                {/* Left: Logo */}
-                <div className="w-12 h-12 rounded-2xl bg-black flex items-center justify-center text-white font-bold text-xl shadow-lg">
-                    Q
-                </div>
+        <section className="relative min-h-screen w-full bg-[#E0E2E5] text-[#111827] overflow-hidden flex flex-col p-6 pt-24 font-sans">
 
-                {/* Center: Rent/Buy/Sell - Absolutely centered */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 bg-[#D1D5DB]/40 backdrop-blur-sm rounded-full p-1 flex gap-1 shadow-inner">
-                    {['Rent', 'Buy', 'Sell'].map((item, index) => (
-                        <button
-                            key={item}
-                            className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${index === 0
-                                ? 'bg-[#D1D5DB] text-gray-800 shadow-sm'
-                                : 'text-gray-600 hover:bg-white/20'
-                                }`}
-                        >
-                            {item}
-                        </button>
-                    ))}
-                </div>
-
-                {/* Right: Location & Settings */}
-                <div className="flex items-center gap-3">
-                    <div className="flex items-center gap-2 text-xs text-gray-600 bg-[#D1D5DB]/40 rounded-full px-4 py-2.5 shadow-sm border border-white/20">
-                        <span className="w-1.5 h-1.5 rounded-full bg-transparent border-2 border-gray-500" />
-                        <span>Your location: <span className="font-semibold text-gray-800">Los Angeles</span></span>
-                    </div>
-                </div>
-            </header>
 
             {/* Left Fixed Icons */}
             <div className="fixed left-6 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-50">
