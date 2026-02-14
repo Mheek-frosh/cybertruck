@@ -18,7 +18,7 @@ const Navbar = () => {
     const navLinks = ['Vehicles', 'Energy', 'Charging', 'Discover', 'Shop'];
 
     return (
-        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'bg-white/70 backdrop-blur-xl py-3 shadow-sm border-b border-black/5' : 'bg-transparent py-5'}`}>
+        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-white/40 backdrop-blur-md border-b border-white/20 py-4`}>
             <div className="container mx-auto px-12 flex items-center justify-between">
                 {/* Logo */}
                 <motion.div
@@ -27,11 +27,12 @@ const Navbar = () => {
                     transition={{ duration: 0.8 }}
                     className="flex items-center"
                 >
-                    <img src={logo} alt="Tesla" className="h-6 w-auto" />
+                    <img src={logo} alt="Tesla" className="h-10 w-auto" />
                 </motion.div>
 
                 {/* Desktop Links - Tab style */}
-                <div className="hidden lg:flex items-center bg-black/5 backdrop-blur-md rounded-full px-2 py-1 gap-1">
+                <div className="hidden lg:flex items-center bg-white/20 backdrop-blur-md rounded-full px-2 py-1 gap-1 border border-white/30 shadow-sm">
+
                     {navLinks.map((item, index) => (
                         <motion.a
                             key={item}
