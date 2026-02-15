@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import CommercialHero from './components/CommercialHero';
 import Hero from './components/Hero';
+import DurabilitySection from './components/DurabilitySection';
 import SpecsSection from './components/SpecsSection';
 import InteriorSection from './components/InteriorSection';
 import Footer from './components/Footer';
@@ -14,6 +15,7 @@ function App() {
             <main>
                 <CommercialHero />
                 <Hero />
+                <DurabilitySection />
                 <SpecsSection />
                 <InteriorSection />
             </main>
