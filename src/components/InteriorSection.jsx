@@ -3,25 +3,27 @@ import { motion } from 'framer-motion';
 
 import cockpitImg from '../assets/interior.png';
 import roofImg from '../assets/world.png';
+import selfDriveVideo from '../assets/selfdrive3.mp4';
 
 const InteriorSection = () => {
     return (
         <section className="relative min-h-[150vh] w-full bg-[#111111] text-white overflow-hidden">
             {/* Main Cockpit View */}
-            <div className="min-h-screen flex items-center relative">
+            <div className="min-h-screen flex items-center relative py-32">
                 <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#3E6AE110] to-transparent pointer-events-none" />
 
-                <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+                <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1 }}
                         viewport={{ once: true }}
+                        className="order-2 lg:order-1"
                     >
                         <span className="text-[#3E6AE1] font-orbitron text-xs tracking-[0.5em] uppercase mb-4 block">
                             Cockpit
                         </span>
-                        <h2 className="text-4xl md:text-6xl font-orbitron font-extrabold mb-8 glow-text leading-tight uppercase">
+                        <h2 className="text-4xl md:text-7xl font-orbitron font-extrabold mb-8 glow-text leading-tight uppercase">
                             THE FUTURE <br />OF DRIVING
                         </h2>
 
@@ -51,13 +53,26 @@ const InteriorSection = () => {
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1.2 }}
                         viewport={{ once: true }}
-                        className="relative"
+                        className="relative order-1 lg:order-2 lg:scale-110 lg:translate-x-12"
                     >
-                        <div className="aspect-video cyber-border overflow-hidden rounded-lg">
-                            <img src={cockpitImg} alt="Cybertruck Interior" className="w-full h-full object-cover" />
-                            <div className="absolute inset-0 bg-black/20" />
+                        <div className="aspect-video cyber-border overflow-hidden rounded-lg shadow-[0_0_50px_rgba(62,106,225,0.2)]">
+                            <video
+                                src={selfDriveVideo}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-black/10" />
                         </div>
-                        <div className="absolute -bottom-4 -right-4 w-24 h-24 cyber-border opacity-20 pointer-events-none" />
+                        <div className="absolute -bottom-6 -right-6 w-32 h-32 cyber-border opacity-20 pointer-events-none" />
+
+                        {/* Status Indicator */}
+                        <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-blue-500/30 flex items-center gap-2">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
+                            <span className="text-[10px] font-orbitron text-blue-400 tracking-widest uppercase">Autonomous Active</span>
+                        </div>
                     </motion.div>
                 </div>
             </div>
