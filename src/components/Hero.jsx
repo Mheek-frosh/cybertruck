@@ -4,6 +4,10 @@ import { ChevronLeft, ChevronRight, Bolt, X } from 'lucide-react';
 import cybertruckFront from '../assets/front.png';
 import cybertruckSide from '../assets/rightside.png';
 import cybertruckRear from '../assets/back.png';
+import tesla1 from '../assets/tesla1.png';
+import tesla2 from '../assets/telsa2.png';
+import tesla3 from '../assets/telsa3.png';
+import tesla4 from '../assets/front.png'; // Using Cybertruck front as the 4th car
 
 const CAR_SLIDES = [
     {
@@ -29,9 +33,17 @@ const CAR_SLIDES = [
     },
 ];
 
+const SELECTOR_CARS = [
+    { id: 1, name: 'Model S', image: tesla1 },
+    { id: 2, name: 'Model 3', image: tesla2 },
+    { id: 3, name: 'Model X', image: tesla3 },
+    { id: 4, name: 'Cybertruck', image: tesla4 },
+];
+
 const Hero = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [isAssistantOpen, setIsAssistantOpen] = useState(true);
+    const [isDashboardOpen, setIsDashboardOpen] = useState(false);
 
     const currentSlide = CAR_SLIDES[activeIndex];
 
@@ -48,7 +60,10 @@ const Hero = () => {
                 <button className="w-12 h-12 rounded-2xl bg-white/5 backdrop-blur-md flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-all border border-white/10 shadow-sm">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
                 </button>
-                <button className="w-12 h-12 rounded-2xl bg-white/5 backdrop-blur-md flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-all border border-white/10 shadow-sm">
+                <button
+                    onClick={() => setIsDashboardOpen(true)}
+                    className={`w-12 h-12 rounded-2xl backdrop-blur-md flex items-center justify-center transition-all border shadow-sm ${isDashboardOpen ? 'bg-[#3E6AE1] text-white border-[#3E6AE1]' : 'bg-white/5 text-white/50 hover:text-white hover:bg-white/10 border-white/10'}`}
+                >
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" /></svg>
                 </button>
                 <button className="w-12 h-12 rounded-2xl bg-white/5 backdrop-blur-md flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-all border border-white/10 shadow-sm">
@@ -78,6 +93,64 @@ const Hero = () => {
 
             {/* Main Content Grid */}
             <div className="flex-1 max-w-[1440px] w-full mx-auto grid grid-cols-12 gap-6 relative px-12">
+
+                {/* Dashboard Popup Section - Left Side */}
+                <AnimatePresence>
+                    {isDashboardOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, x: -50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -50, transition: { duration: 0.3 } }}
+                            className="absolute left-12 top-0 w-[900px] z-50 pointer-events-auto"
+                        >
+                            <div className="bg-black/40 backdrop-blur-2xl rounded-[32px] p-8 border border-white/10 shadow-[0_40px_100px_rgba(0,0,0,0.5)] h-auto relative overflow-hidden flex flex-col">
+                                <div className="flex items-center justify-between mb-10">
+                                    <div>
+                                        <h3 className="font-orbitron font-bold text-white tracking-[0.3em] text-sm uppercase">Vehicle Selection</h3>
+                                        <p className="text-[10px] text-white/40 mt-1 uppercase tracking-widest font-inter">Choose your configuration</p>
+                                    </div>
+                                    <button
+                                        onClick={() => setIsDashboardOpen(false)}
+                                        className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white/40 hover:bg-white/10 hover:text-white transition-all border border-white/10 shadow-sm"
+                                    >
+                                        <X size={16} />
+                                    </button>
+                                </div>
+
+                                <div className="grid grid-cols-4 gap-6">
+                                    {SELECTOR_CARS.map((car) => (
+                                        <motion.div
+                                            key={car.id}
+                                            whileHover={{ y: -5 }}
+                                            className="group relative bg-white/5 hover:bg-white/10 rounded-[24px] p-6 border border-white/5 hover:border-[#3E6AE1]/30 transition-all cursor-pointer flex flex-col items-center"
+                                        >
+                                            <div className="w-full h-24 relative flex items-center justify-center mb-4">
+                                                <img
+                                                    src={car.image}
+                                                    alt={car.name}
+                                                    className="w-full h-full object-contain drop-shadow-[0_10px_20px_rgba(62,106,225,0.2)] group-hover:scale-110 transition-transform duration-500"
+                                                />
+                                            </div>
+                                            <div className="text-center">
+                                                <span className="block text-[10px] font-orbitron font-bold text-white tracking-widest uppercase mb-1">{car.name}</span>
+                                                <div className="h-1 w-0 bg-[#3E6AE1] mx-auto group-hover:w-full transition-all duration-300" />
+                                            </div>
+
+                                            {/* Hover Glow */}
+                                            <div className="absolute inset-0 bg-[#3E6AE1]/5 opacity-0 group-hover:opacity-100 rounded-[24px] transition-opacity pointer-events-none" />
+                                        </motion.div>
+                                    ))}
+                                </div>
+
+                                <div className="mt-10 flex justify-center">
+                                    <div className="w-8 h-0.5 bg-[#3E6AE1] rounded-full mx-1" />
+                                    <div className="w-2 h-0.5 bg-white/20 rounded-full mx-1" />
+                                    <div className="w-2 h-0.5 bg-white/20 rounded-full mx-1" />
+                                </div>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
 
                 {/* Image & Main Area - Always col-span-12 to stay centered */}
                 <div className="col-span-12 relative flex flex-col transition-all duration-500">
