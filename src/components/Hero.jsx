@@ -44,6 +44,12 @@ const Hero = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [isAssistantOpen, setIsAssistantOpen] = useState(true);
     const [isDashboardOpen, setIsDashboardOpen] = useState(false);
+    const [selectedDate, setSelectedDate] = useState('2024-07-20');
+    const [selectedTime, setSelectedTime] = useState('10:25');
+
+    const handleLocationClick = () => {
+        window.open('https://www.google.com/maps/search/?api=1&query=Vermont+Square,+Los+Angeles', '_blank');
+    };
 
     const currentSlide = CAR_SLIDES[activeIndex];
 
@@ -195,16 +201,19 @@ const Hero = () => {
                     </div>
 
                     {/* Bottom Info Cards */}
-                    <div className="grid grid-cols-2 gap-6 mt-auto mb-4 max-w-full lg:max-w-4xl mx-auto">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-auto mb-4 max-w-full lg:max-w-4xl mx-auto w-full">
                         {/* My Location Card */}
-                        <div className="bg-white/5 backdrop-blur-xl rounded-[32px] p-6 relative group border border-white/10 shadow-2xl">
-                            <div className="absolute top-4 right-4 text-white/20">
+                        <div
+                            onClick={handleLocationClick}
+                            className="bg-white/5 backdrop-blur-xl rounded-[32px] p-6 relative group border border-white/10 shadow-2xl cursor-pointer hover:bg-white/10 transition-all"
+                        >
+                            <div className="absolute top-4 right-4 text-white/20 group-hover:text-[#3E6AE1] transition-colors">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /><polyline points="9 21 3 21 3 15" /><line x1="14" y1="10" x2="3" y2="21" /></svg>
                             </div>
                             <p className="text-white/40 text-xs font-orbitron uppercase tracking-widest mb-1">My Location</p>
                             <p className="text-white text-sm mb-8 font-medium">Vermont Square, Los Angeles</p>
                             <div className="h-24 bg-white/5 rounded-2xl w-full relative overflow-hidden border border-white/5">
-                                <div className="absolute inset-0 bg-[url('https://api.mapbox.com/styles/v1/mapbox/dark-v11/static/-118.2437,34.0522,12,0/500x300?access_token=YOUR_TOKEN')] bg-cover opacity-20 grayscale" />
+                                <div className="absolute inset-0 bg-[url('https://api.mapbox.com/styles/v1/mapbox/dark-v11/static/-118.2437,34.0522,12,0/500x300?access_token=YOUR_TOKEN')] bg-cover opacity-20 grayscale group-hover:opacity-40 transition-opacity" />
                                 <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-[#3E6AE1] rounded-full flex items-center justify-center text-white shadow-lg shadow-[#3E6AE1]/40 animate-pulse">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>
                                 </div>
@@ -212,26 +221,41 @@ const Hero = () => {
                         </div>
 
                         {/* My Dates Card */}
-                        <div className="bg-white/5 backdrop-blur-xl rounded-[32px] p-6 relative border border-white/10 shadow-2xl flex items-center justify-between">
+                        <div className="bg-white/5 backdrop-blur-xl rounded-[32px] p-6 relative border border-white/10 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-6">
                             <div className="absolute top-4 right-4 text-white/20">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /><polyline points="9 21 3 21 3 15" /><line x1="14" y1="10" x2="3" y2="21" /></svg>
+                                <Bolt size={16} />
                             </div>
-                            <div className="flex-1">
+                            <div className="flex-1 w-full sm:w-auto">
                                 <p className="text-white/40 text-xs font-orbitron uppercase tracking-widest mb-1">My Dates</p>
-                                <p className="text-white text-sm mb-6 font-medium">20th of July · 10:25 AM</p>
+                                <div className="flex flex-col gap-2 mb-4">
+                                    <input
+                                        type="date"
+                                        value={selectedDate}
+                                        onChange={(e) => setSelectedDate(e.target.value)}
+                                        className="bg-transparent text-white text-sm font-medium border-none focus:ring-0 cursor-pointer w-full text-center sm:text-left"
+                                    />
+                                    <input
+                                        type="time"
+                                        value={selectedTime}
+                                        onChange={(e) => setSelectedTime(e.target.value)}
+                                        className="bg-transparent text-[#3E6AE1] text-xs font-bold border-none focus:ring-0 cursor-pointer w-full text-center sm:text-left"
+                                    />
+                                </div>
 
-                                <div className="flex items-center gap-4">
-                                    <button className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white shadow-sm hover:bg-white/20 transition-all"><ChevronLeft size={16} /></button>
-                                    <div className="text-center">
-                                        <span className="block text-2xl font-bold text-white font-orbitron">20</span>
-                                        <span className="text-[10px] text-white/40 uppercase font-orbitron tracking-tighter">Jul</span>
+                                <div className="flex items-center gap-4 justify-center sm:justify-start">
+                                    <div className="text-center bg-white/10 px-4 py-2 rounded-2xl border border-white/10">
+                                        <span className="block text-2xl font-bold text-white font-orbitron">{selectedDate.split('-')[2]}</span>
+                                        <span className="text-[10px] text-white/40 uppercase font-orbitron tracking-tighter">
+                                            {new Date(selectedDate).toLocaleString('default', { month: 'short' })}
+                                        </span>
                                     </div>
-                                    <button className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white shadow-sm hover:bg-white/20 transition-all"><ChevronRight size={16} /></button>
                                 </div>
                             </div>
-                            <div className="flex flex-col items-center justify-center pl-6 border-l border-white/10">
-                                <span className="text-3xl font-light text-white font-orbitron tracking-tighter">10:25</span>
-                                <span className="text-[10px] text-white/40 uppercase tracking-[0.3em] mt-1 font-orbitron">AM</span>
+                            <div className="flex flex-col items-center justify-center sm:pl-6 sm:border-l border-white/10 w-full sm:w-auto">
+                                <span className="text-3xl font-light text-white font-orbitron tracking-tighter">{selectedTime}</span>
+                                <span className="text-[10px] text-white/40 uppercase tracking-[0.3em] mt-1 font-orbitron">
+                                    {parseInt(selectedTime.split(':')[0]) >= 12 ? 'PM' : 'AM'}
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -314,28 +338,6 @@ const Hero = () => {
                                     </div>
                                 </div>
                             </div>
-
-                            {/* Payment Method Card */}
-                            <div className="bg-black/20 backdrop-blur-xl rounded-[32px] p-6 relative border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.2)]">
-                                <div className="absolute top-4 right-4 text-white/20">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /><polyline points="9 21 3 21 3 15" /><line x1="14" y1="10" x2="3" y2="21" /></svg>
-                                </div>
-                                <p className="text-white/40 text-[10px] font-orbitron font-bold uppercase tracking-widest mb-4">Payment Method</p>
-
-                                <div className="flex items-center justify-between bg-white/5 p-3 rounded-2xl border border-white/10 hover:border-white/20 transition-all cursor-pointer">
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-10 h-6 bg-white flex items-center justify-center text-black text-[8px] font-bold rounded-sm">VISA</div>
-                                        <div className="flex flex-col">
-                                            <span className="text-xs font-orbitron font-bold text-white tracking-widest uppercase">Credit Card</span>
-                                            <span className="text-[9px] text-white/40 font-inter">3451 **** **** 7896</span>
-                                        </div>
-                                    </div>
-                                    <div className="w-5 h-5 rounded-full border border-[#3E6AE1] flex items-center justify-center">
-                                        <div className="w-2.5 h-2.5 bg-[#3E6AE1] rounded-full shadow-lg shadow-[#3E6AE1]/50" />
-                                    </div>
-                                </div>
-                            </div>
-
                         </motion.div>
                     )}
                 </AnimatePresence>
