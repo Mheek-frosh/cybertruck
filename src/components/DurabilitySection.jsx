@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const DurabilitySection = () => {
     return (
-        <section className="relative min-h-screen w-full bg-[#0a0a0a] text-white flex items-center overflow-hidden py-20">
+        <section id="durability" className="relative min-h-screen w-full bg-[#0a0a0a] text-white flex items-center overflow-hidden py-20">
             {/* Background geometric accents */}
             <div className="absolute top-0 right-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#3E6AE120] to-transparent" />
             <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#3E6AE120] to-transparent" />

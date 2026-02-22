@@ -5,7 +5,7 @@ import vaultImg from '../assets/iI.png';
 
 const UtilitySection = () => {
     return (
-        <section className="relative min-h-screen w-full bg-[#0a0a0a] text-white py-24 overflow-hidden">
+        <section id="utility" className="relative min-h-screen w-full bg-[#0a0a0a] text-white py-24 overflow-hidden">
             <div className="container mx-auto px-6 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}

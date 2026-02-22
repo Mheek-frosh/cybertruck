@@ -9,7 +9,12 @@ import UtilitySection from './components/UtilitySection';
 import SpecsSection from './components/SpecsSection';
 import InteriorSection from './components/InteriorSection';
 import TechnologySection from './components/TechnologySection';
+import PricingSection from './components/PricingSection';
+import TestimonialsSection from './components/TestimonialsSection';
+import FAQSection from './components/FAQSection';
 import Footer from './components/Footer';
+import ScrollProgress from './components/ScrollProgress';
+import BackToTop from './components/BackToTop';
 
 // Assets for Vehicle Selector
 import tesla1 from './assets/tesla1.png';
@@ -41,12 +46,21 @@ function App() {
 
     return (
         <div className="bg-black min-h-screen text-white relative">
+            <a
+                href="#hero"
+                onClick={(e) => { e.preventDefault(); document.querySelector('#hero')?.scrollIntoView({ behavior: 'smooth' }); }}
+                className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:px-4 focus:py-2 focus:bg-[#3E6AE1] focus:text-white focus:rounded-lg font-orbitron text-sm uppercase"
+            >
+                Skip to main content
+            </a>
+            <ScrollProgress />
+            <BackToTop />
             <Navbar />
 
             {/* Global Fixed Controllers */}
             {/* Left Fixed Icons */}
             <div className="fixed left-3 lg:left-6 top-1/2 -translate-y-1/2 flex flex-col gap-3 lg:gap-4 z-50">
-                <button className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl lg:rounded-2xl bg-white/5 backdrop-blur-md flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-all border border-white/10 shadow-sm">
+                <button className="w-10 h-10 lg:w-12 lg:h-12 rounded-xl lg:rounded-2xl bg-white/5 backdrop-blur-md flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 transition-all border border-white/10 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#3E6AE1]" aria-label="Previous">
                     <ChevronLeft size={18} className="lg:hidden" />
                     <ChevronLeft size={20} className="hidden lg:block" />
                 </button>
@@ -294,7 +308,7 @@ function App() {
                 )}
             </AnimatePresence>
 
-            <main>
+            <main role="main">
                 <CommercialHero />
                 <Hero />
                 <DurabilitySection />
@@ -302,6 +316,9 @@ function App() {
                 <SpecsSection />
                 <InteriorSection />
                 <TechnologySection />
+                <PricingSection />
+                <TestimonialsSection />
+                <FAQSection />
             </main>
             <Footer />
         </div>

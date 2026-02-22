@@ -15,33 +15,51 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const navLinks = ['Vehicles', 'Energy', 'Charging', 'Discover', 'Shop'];
+    const navLinks = [
+        { label: 'Vehicles', href: '#hero' },
+        { label: 'Energy', href: '#utility' },
+        { label: 'Charging', href: '#specs' },
+        { label: 'Discover', href: '#interior' },
+        { label: 'Shop', href: '#pricing' },
+    ];
+
+    const scrollToSection = (e, href) => {
+        e.preventDefault();
+        if (href.startsWith('#')) {
+            const el = document.querySelector(href);
+            el?.scrollIntoView({ behavior: 'smooth' });
+        }
+        setIsMobileMenuOpen(false);
+    };
 
     return (
-        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'bg-black/80' : 'bg-transparent'} backdrop-blur-md border-b border-white/10 py-4`}>
+        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'bg-black/80' : 'bg-transparent'} backdrop-blur-md border-b border-white/10 py-4`} role="navigation" aria-label="Main navigation">
             <div className="container mx-auto px-12 flex items-center justify-between relative">
                 {/* Logo - Left */}
-                <motion.div
+                <motion.a
+                    href="#hero"
+                    onClick={(e) => { e.preventDefault(); document.querySelector('#hero')?.scrollIntoView({ behavior: 'smooth' }); }}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.8 }}
-                    className="flex items-center z-10 invert brightness-200"
+                    className="flex items-center z-10 invert brightness-200 focus:outline-none focus:ring-2 focus:ring-[#3E6AE1] rounded"
                 >
-                    <img src={logo} alt="Tesla" className="h-10 w-auto" />
-                </motion.div>
+                    <img src={logo} alt="Tesla - Cybertruck" className="h-10 w-auto" />
+                </motion.a>
 
                 {/* Desktop Links - Center */}
                 <div className="hidden lg:flex items-center absolute left-1/2 -translate-x-1/2 bg-white/5 backdrop-blur-md rounded-full px-2 py-1 gap-1 border border-white/10 shadow-sm">
                     {navLinks.map((item, index) => (
                         <motion.a
-                            key={item}
-                            href="#"
+                            key={item.label}
+                            href={item.href}
+                            onClick={(e) => scrollToSection(e, item.href)}
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.05 * index }}
-                            className="px-6 py-2 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-all text-sm font-orbitron font-medium tracking-widest"
+                            className="px-6 py-2 rounded-full text-white/70 hover:text-white hover:bg-white/10 transition-all text-sm font-orbitron font-medium tracking-widest focus:outline-none focus:ring-2 focus:ring-[#3E6AE1] focus:ring-offset-2 focus:ring-offset-transparent"
                         >
-                            {item}
+                            {item.label}
                         </motion.a>
                     ))}
                 </div>
@@ -85,14 +103,15 @@ const Navbar = () => {
                         <div className="flex flex-col gap-6">
                             {navLinks.map((item, index) => (
                                 <motion.a
-                                    key={item}
-                                    href="#"
+                                    key={item.label}
+                                    href={item.href}
+                                    onClick={(e) => scrollToSection(e, item.href)}
                                     initial={{ opacity: 0, x: 20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: 0.05 * index }}
                                     className="text-white text-xl font-orbitron font-medium tracking-widest hover:text-[#3E6AE1] transition-all"
                                 >
-                                    {item}
+                                    {item.label}
                                 </motion.a>
                             ))}
                         </div>

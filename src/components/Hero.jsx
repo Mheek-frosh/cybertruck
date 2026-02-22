@@ -41,7 +41,7 @@ const Hero = () => {
     const currentSlide = CAR_SLIDES[activeIndex];
 
     return (
-        <section className="relative min-h-screen w-full bg-[#050505] text-white overflow-hidden flex flex-col p-6 pt-24 font-inter">
+        <section id="hero-carousel" className="relative min-h-screen w-full bg-[#050505] text-white overflow-hidden flex flex-col p-6 pt-24 font-inter">
             {/* Cyber Grid Background */}
             <div className="absolute inset-0 cyber-grid opacity-10 pointer-events-none" />
 
@@ -59,15 +59,21 @@ const Hero = () => {
                         <div className="flex items-center gap-3 mt-8">
                             <button
                                 onClick={() => setActiveIndex(0)}
-                                className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors border ${activeIndex === 0 ? 'bg-white text-black border-white' : 'bg-transparent text-white/50 border-white/20 hover:border-white/40 hover:text-white'}`}
+                                className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors border ${activeIndex === 0 ? 'bg-white text-black border-white' : 'bg-transparent text-white/50 border-white/20 hover:border-white/40 hover:text-white'} focus:outline-none focus:ring-2 focus:ring-[#3E6AE1]`}
+                                aria-label="Right view"
+                                aria-pressed={activeIndex === 0}
                             >R</button>
                             <button
                                 onClick={() => setActiveIndex(1)}
-                                className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors border ${activeIndex === 1 ? 'bg-white text-black border-white' : 'bg-transparent text-white/50 border-white/20 hover:border-white/40 hover:text-white'}`}
+                                className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors border ${activeIndex === 1 ? 'bg-white text-black border-white' : 'bg-transparent text-white/50 border-white/20 hover:border-white/40 hover:text-white'} focus:outline-none focus:ring-2 focus:ring-[#3E6AE1]`}
+                                aria-label="Front view"
+                                aria-pressed={activeIndex === 1}
                             >F</button>
                             <button
                                 onClick={() => setActiveIndex(2)}
-                                className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors border ${activeIndex === 2 ? 'bg-white text-black border-white' : 'bg-transparent text-white/50 border-white/20 hover:border-white/40 hover:text-white'}`}
+                                className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors border ${activeIndex === 2 ? 'bg-white text-black border-white' : 'bg-transparent text-white/50 border-white/20 hover:border-white/40 hover:text-white'} focus:outline-none focus:ring-2 focus:ring-[#3E6AE1]`}
+                                aria-label="Back view"
+                                aria-pressed={activeIndex === 2}
                             >B</button>
                         </div>
                     </div>

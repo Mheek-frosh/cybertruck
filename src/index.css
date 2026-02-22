@@ -5,6 +5,10 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-[#111827] font-inter overflow-x-hidden antialiased;
   }

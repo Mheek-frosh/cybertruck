@@ -5,7 +5,7 @@ import autopilotImg from '../assets/traffic.png';
 
 const TechnologySection = () => {
     return (
-        <section className="relative min-h-screen w-full bg-[#111111] text-white py-24 overflow-hidden">
+        <section id="technology" className="relative min-h-screen w-full bg-[#111111] text-white py-24 overflow-hidden">
             {/* Background Accent */}
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_rgba(62,106,225,0.05)_0%,_transparent_70%)] pointer-events-none" />
 

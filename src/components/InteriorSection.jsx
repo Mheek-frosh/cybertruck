@@ -1,13 +1,14 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import cockpitImg from '../assets/interior.png';
 import roofImg from '../assets/world.png';
 import selfDriveVideo from '../assets/selfdrive3.mp4';
 
 const InteriorSection = () => {
+    const [videoLoaded, setVideoLoaded] = useState(false);
     return (
-        <section className="relative min-h-[150vh] w-full bg-[#111111] text-white overflow-hidden">
+        <section id="interior" className="relative min-h-[150vh] w-full bg-[#111111] text-white overflow-hidden">
             {/* Main Cockpit View */}
             <div className="min-h-screen flex items-center relative py-32">
                 <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#3E6AE110] to-transparent pointer-events-none" />
@@ -55,14 +56,27 @@ const InteriorSection = () => {
                         viewport={{ once: true }}
                         className="relative order-1 lg:order-2 lg:scale-110 lg:translate-x-12"
                     >
-                        <div className="aspect-video cyber-border overflow-hidden rounded-lg shadow-[0_0_50px_rgba(62,106,225,0.2)]">
+                        <div className="aspect-video cyber-border overflow-hidden rounded-lg shadow-[0_0_50px_rgba(62,106,225,0.2)] relative">
+                            <AnimatePresence>
+                                {!videoLoaded && (
+                                    <motion.div
+                                        initial={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}
+                                        className="absolute inset-0 bg-black/80 flex items-center justify-center z-10"
+                                    >
+                                        <div className="w-8 h-8 border-2 border-[#3E6AE1] border-t-transparent rounded-full animate-spin" />
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                             <video
                                 src={selfDriveVideo}
                                 autoPlay
                                 loop
                                 muted
                                 playsInline
+                                onLoadedData={() => setVideoLoaded(true)}
                                 className="w-full h-full object-cover"
+                                aria-label="Cybertruck autonomous driving demonstration"
                             />
                             <div className="absolute inset-0 bg-black/10" />
                         </div>

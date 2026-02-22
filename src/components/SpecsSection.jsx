@@ -10,7 +10,7 @@ const SpecsSection = () => {
     ];
 
     return (
-        <section className="relative min-h-screen w-full bg-[#0a0a0a] text-white flex flex-col items-center justify-center py-20 overflow-hidden">
+        <section id="specs" className="relative min-h-screen w-full bg-[#0a0a0a] text-white flex flex-col items-center justify-center py-20 overflow-hidden">
             {/* Cyber Grid Background */}
             <div className="absolute inset-0 cyber-grid opacity-20 pointer-events-none" />
 
@@ -52,6 +52,57 @@ const SpecsSection = () => {
                         </motion.div>
                     ))}
                 </div>
+
+                {/* Specs Comparison Table */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                    viewport={{ once: true }}
+                    className="mt-20 w-full max-w-5xl mx-auto overflow-x-auto"
+                >
+                    <h3 className="text-xl font-orbitron font-bold uppercase tracking-widest text-center mb-8 text-[#3E6AE1]">
+                        Trim Comparison
+                    </h3>
+                    <div className="cyber-border rounded-2xl overflow-hidden bg-black/40">
+                        <table className="w-full text-left" role="table" aria-label="Cybertruck trim comparison">
+                            <thead>
+                                <tr className="border-b border-white/10">
+                                    <th className="px-6 py-4 font-orbitron text-xs uppercase tracking-widest text-white/60">Spec</th>
+                                    <th className="px-6 py-4 font-orbitron text-xs uppercase tracking-widest text-white/60">RWD</th>
+                                    <th className="px-6 py-4 font-orbitron text-xs uppercase tracking-widest text-[#3E6AE1]">AWD</th>
+                                    <th className="px-6 py-4 font-orbitron text-xs uppercase tracking-widest text-white/60">Cyberbeast</th>
+                                </tr>
+                            </thead>
+                            <tbody className="font-inter text-sm">
+                                <tr className="border-b border-white/5 hover:bg-white/5">
+                                    <td className="px-6 py-4 text-gray-400">0-60 mph</td>
+                                    <td className="px-6 py-4 text-white">6.5s</td>
+                                    <td className="px-6 py-4 text-white font-medium">4.1s</td>
+                                    <td className="px-6 py-4 text-white">2.6s</td>
+                                </tr>
+                                <tr className="border-b border-white/5 hover:bg-white/5">
+                                    <td className="px-6 py-4 text-gray-400">Range</td>
+                                    <td className="px-6 py-4 text-white">250+ mi</td>
+                                    <td className="px-6 py-4 text-white font-medium">340 mi</td>
+                                    <td className="px-6 py-4 text-white">320 mi</td>
+                                </tr>
+                                <tr className="border-b border-white/5 hover:bg-white/5">
+                                    <td className="px-6 py-4 text-gray-400">Towing</td>
+                                    <td className="px-6 py-4 text-white">7,500 lbs</td>
+                                    <td className="px-6 py-4 text-white font-medium">11,000 lbs</td>
+                                    <td className="px-6 py-4 text-white">11,000 lbs</td>
+                                </tr>
+                                <tr className="hover:bg-white/5">
+                                    <td className="px-6 py-4 text-gray-400">Top Speed</td>
+                                    <td className="px-6 py-4 text-white">112 mph</td>
+                                    <td className="px-6 py-4 text-white font-medium">112 mph</td>
+                                    <td className="px-6 py-4 text-white">130 mph</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </motion.div>
 
                 <motion.div
                     initial={{ opacity: 0 }}

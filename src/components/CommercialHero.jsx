@@ -1,17 +1,38 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import videoBg from '../assets/v1.webm';
 
 const CommercialHero = () => {
+    const [videoLoaded, setVideoLoaded] = useState(false);
+
     return (
-        <section className="relative h-screen w-full overflow-hidden flex flex-col items-center justify-between py-24 text-white">
+        <section id="hero" className="relative h-screen w-full overflow-hidden flex flex-col items-center justify-between py-24 text-white">
+            {/* Loading overlay */}
+            <AnimatePresence>
+                {!videoLoaded && (
+                    <motion.div
+                        initial={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="absolute inset-0 z-[2] bg-black flex items-center justify-center"
+                    >
+                        <div className="flex flex-col items-center gap-4">
+                            <div className="w-12 h-12 border-2 border-[#3E6AE1] border-t-transparent rounded-full animate-spin" />
+                            <span className="text-xs font-orbitron uppercase tracking-widest text-white/60">Loading...</span>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
             {/* Background Video */}
             <video
                 autoPlay
                 loop
                 muted
                 playsInline
+                onLoadedData={() => setVideoLoaded(true)}
                 className="absolute inset-0 w-full h-full object-cover z-0"
+                aria-label="Cybertruck promotional video"
             >
                 <source src={videoBg} type="video/webm" />
                 Your browser does not support the video tag.
