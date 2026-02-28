@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, HelpCircle, User, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from '../assets/logo.png';
+import MagneticButton from './MagneticButton';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -66,15 +67,21 @@ const Navbar = () => {
 
                 {/* Right Side Icons - Right */}
                 <div className="hidden lg:flex items-center gap-2 z-10">
-                    <button className="text-white fill-white hover:bg-white/10 p-2.5 rounded-full transition-all" title="Support">
-                        <HelpCircle size={20} />
-                    </button>
-                    <button className="text-white hover:bg-white/10 p-2.5 rounded-full transition-all" title="Language">
-                        <Globe size={20} />
-                    </button>
-                    <button className="text-white hover:bg-white/10 p-2.5 rounded-full transition-all" title="Account">
-                        <User size={20} />
-                    </button>
+                    <MagneticButton>
+                        <button className="text-white fill-white hover:bg-white/10 p-2.5 rounded-full transition-all" title="Support">
+                            <HelpCircle size={20} />
+                        </button>
+                    </MagneticButton>
+                    <MagneticButton>
+                        <button className="text-white hover:bg-white/10 p-2.5 rounded-full transition-all" title="Language">
+                            <Globe size={20} />
+                        </button>
+                    </MagneticButton>
+                    <MagneticButton>
+                        <button className="text-white hover:bg-white/10 p-2.5 rounded-full transition-all" title="Account">
+                            <User size={20} />
+                        </button>
+                    </MagneticButton>
                 </div>
 
 

@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import cybertruckFront from '../assets/front.png';
 import cybertruckSide from '../assets/rightside.png';
 import cybertruckRear from '../assets/back.png';
+import MagneticButton from './MagneticButton';
 
 const CAR_SLIDES = [
     {
@@ -53,28 +54,34 @@ const Hero = () => {
 
                     {/* Title & View Selector */}
                     <div className="absolute top-0 left-0 z-10">
-                        <h1 className="text-5xl font-orbitron font-extrabold text-white tracking-widest glow-text uppercase">{currentSlide.title}</h1>
+                        <h1 className="text-5xl font-orbitron font-extrabold text-white tracking-widest glow-text glitch-text uppercase" data-text={currentSlide.title}>{currentSlide.title}</h1>
                         <p className="text-gray-400 mt-2 text-lg uppercase tracking-[0.3em] font-light">{currentSlide.subtitle}</p>
 
                         <div className="flex items-center gap-3 mt-8">
-                            <button
-                                onClick={() => setActiveIndex(0)}
-                                className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors border ${activeIndex === 0 ? 'bg-white text-black border-white' : 'bg-transparent text-white/50 border-white/20 hover:border-white/40 hover:text-white'} focus:outline-none focus:ring-2 focus:ring-[#3E6AE1]`}
-                                aria-label="Right view"
-                                aria-pressed={activeIndex === 0}
-                            >R</button>
-                            <button
-                                onClick={() => setActiveIndex(1)}
-                                className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors border ${activeIndex === 1 ? 'bg-white text-black border-white' : 'bg-transparent text-white/50 border-white/20 hover:border-white/40 hover:text-white'} focus:outline-none focus:ring-2 focus:ring-[#3E6AE1]`}
-                                aria-label="Front view"
-                                aria-pressed={activeIndex === 1}
-                            >F</button>
-                            <button
-                                onClick={() => setActiveIndex(2)}
-                                className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors border ${activeIndex === 2 ? 'bg-white text-black border-white' : 'bg-transparent text-white/50 border-white/20 hover:border-white/40 hover:text-white'} focus:outline-none focus:ring-2 focus:ring-[#3E6AE1]`}
-                                aria-label="Back view"
-                                aria-pressed={activeIndex === 2}
-                            >B</button>
+                            <MagneticButton>
+                                <button
+                                    onClick={() => setActiveIndex(0)}
+                                    className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors border ${activeIndex === 0 ? 'bg-white text-black border-white' : 'bg-transparent text-white/50 border-white/20 hover:border-white/40 hover:text-white'} focus:outline-none focus:ring-2 focus:ring-[#3E6AE1]`}
+                                    aria-label="Right view"
+                                    aria-pressed={activeIndex === 0}
+                                >R</button>
+                            </MagneticButton>
+                            <MagneticButton>
+                                <button
+                                    onClick={() => setActiveIndex(1)}
+                                    className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors border ${activeIndex === 1 ? 'bg-white text-black border-white' : 'bg-transparent text-white/50 border-white/20 hover:border-white/40 hover:text-white'} focus:outline-none focus:ring-2 focus:ring-[#3E6AE1]`}
+                                    aria-label="Front view"
+                                    aria-pressed={activeIndex === 1}
+                                >F</button>
+                            </MagneticButton>
+                            <MagneticButton>
+                                <button
+                                    onClick={() => setActiveIndex(2)}
+                                    className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors border ${activeIndex === 2 ? 'bg-white text-black border-white' : 'bg-transparent text-white/50 border-white/20 hover:border-white/40 hover:text-white'} focus:outline-none focus:ring-2 focus:ring-[#3E6AE1]`}
+                                    aria-label="Back view"
+                                    aria-pressed={activeIndex === 2}
+                                >B</button>
+                            </MagneticButton>
                         </div>
                     </div>
 

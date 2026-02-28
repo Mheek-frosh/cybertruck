@@ -15,6 +15,8 @@ import FAQSection from './components/FAQSection';
 import Footer from './components/Footer';
 import ScrollProgress from './components/ScrollProgress';
 import BackToTop from './components/BackToTop';
+import BootLoader from './components/BootLoader';
+import CustomCursor from './components/CustomCursor';
 
 // Assets for Vehicle Selector
 import tesla1 from './assets/tesla1.png';
@@ -36,6 +38,7 @@ function App() {
     const [aiMessage, setAiMessage] = useState('');
     const [showNotification, setShowNotification] = useState(false);
     const [isPaymentOpen, setIsPaymentOpen] = useState(false);
+    const [booting, setBooting] = useState(true);
 
     const handleSend = () => {
         if (!aiMessage.trim()) return;
@@ -46,6 +49,12 @@ function App() {
 
     return (
         <div className="bg-black min-h-screen text-white relative">
+            <AnimatePresence mode="wait">
+                {booting && <BootLoader onComplete={() => setBooting(false)} />}
+            </AnimatePresence>
+
+            <CustomCursor />
+            <div className="film-grain" />
             <a
                 href="#hero"
                 onClick={(e) => { e.preventDefault(); document.querySelector('#hero')?.scrollIntoView({ behavior: 'smooth' }); }}
